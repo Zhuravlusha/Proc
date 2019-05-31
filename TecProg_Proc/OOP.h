@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Object_oriented
 	{
@@ -15,7 +15,6 @@ namespace Filippov
 			OOP
 		} key;
 		unsigned short int year_of_development;
-		int reference;
 		enum inheritance
 		{
 			SINGLE,

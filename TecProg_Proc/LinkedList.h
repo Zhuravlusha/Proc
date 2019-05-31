@@ -3,12 +3,12 @@
 
 #include "Language.h"
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Node
 	{
 		Language *language;
-		Node *Next;
+		Node *Next;//óêàçàòåëü íà ñëåäóþùèé ýëåìåíò â ñïèñêå
 		Node *Prev;//óêàçàòåëü íà ïðåäûäóùèé ýëåìåíò â ñïèñêå
 	};
 
@@ -24,6 +24,8 @@ namespace Filippov
 
 	void LinkedList_Input(LinkedList &obj, ifstream &fin);
 	void LinkedList_Output(LinkedList &obj, ofstream &fout);
+
+	void Only_Procedural(LinkedList &obj, ofstream &fout);
 }
 
 #endif // !LINKEDLIST_H
