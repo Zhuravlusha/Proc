@@ -4,7 +4,7 @@
 #include "Procedural.h"
 #include "OOP.h"
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Language
 	{

@@ -1,13 +1,13 @@
 #include "LinkedList.h"
 
-void Filippov::Init(LinkedList &obj)
+void Zhuravleva::Init(LinkedList &obj)
 {
 	obj.First = NULL;
 	obj.Last = NULL;
 	obj.SizeList = 0;
 }
 
-void Filippov::Clear(LinkedList &obj)
+void Zhuravleva::Clear(LinkedList &obj)
 {
 	Node *Temp = NULL;
 	while (obj.Last != NULL)
@@ -20,7 +20,7 @@ void Filippov::Clear(LinkedList &obj)
 	obj.First = Temp;
 }
 
-void Filippov::LinkedList_Input(LinkedList &obj, ifstream &fin)
+void Zhuravleva::LinkedList_Input(LinkedList &obj, ifstream &fin)
 {
 	Node *Temp;
 	while (!fin.eof())
@@ -47,7 +47,7 @@ void Filippov::LinkedList_Input(LinkedList &obj, ifstream &fin)
 	}
 }
 
-void Filippov::LinkedList_Output(LinkedList &obj, ofstream &fout)
+void Zhuravleva::LinkedList_Output(LinkedList &obj, ofstream &fout)
 {
 	Node *current = obj.First;
 	fout << "Container contains " << obj.SizeList << " elements." << endl;
