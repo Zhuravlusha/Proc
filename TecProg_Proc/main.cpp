@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 
 
 
-	Clear(list);
+	//Clear(list);
 	fout << "Empty container." << endl;
 	LinkedList_Output(list, fout);
 	cout << "Stop" << endl;
