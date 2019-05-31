@@ -3,7 +3,7 @@
 
 #include "Language.h"
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Node
 	{

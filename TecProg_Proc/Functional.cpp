@@ -1,6 +1,6 @@
 #include "Functional.h"
 
-Filippov::Functional * Filippov::Functional_Input(Functional &obj, ifstream &fin)
+Zhuravleva::Functional * Zhuravleva::Functional_Input(Functional &obj, ifstream &fin)
 {
 	unsigned short int temp;
 	fin >> obj.lazy_calculations;
@@ -18,7 +18,7 @@ Filippov::Functional * Filippov::Functional_Input(Functional &obj, ifstream &fin
 	}
 }
 
-void Filippov::Functional_Output(Functional *obj, ofstream &fout)
+void Zhuravleva::Functional_Output(Functional *obj, ofstream &fout)
 {
 	fout << "It is Functional programming language: Support \"lazy\" calculations is ";
 	if (obj->lazy_calculations)

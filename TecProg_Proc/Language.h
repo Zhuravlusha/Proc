@@ -5,7 +5,7 @@
 #include "OOP.h"
 #include "Functional.h"
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Language
 	{
