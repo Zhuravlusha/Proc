@@ -4,7 +4,7 @@
 #include "Procedural.h"
 #include "OOP.h"
 
-namespace Filippov
+namespace Zhuravleva
 {
 	struct Language
 	{
@@ -14,11 +14,12 @@ namespace Filippov
 			OOP
 		} key;
 		unsigned short int year_of_development;
-		int reference;
 	};
 
 	Language* Language_Input(ifstream &fin);
 	void Language_Output(Language *obj, ofstream &fout);
+	int Past_Years(Language *obj);
+	bool Compare(Language *first, Language *second);
 }
 
 #endif // !LANGUAGE_H

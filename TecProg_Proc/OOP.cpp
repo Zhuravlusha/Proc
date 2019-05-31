@@ -1,6 +1,6 @@
 #include "OOP.h"
 
-Filippov::Object_oriented * Filippov::Object_oriented_Input(Object_oriented &obj, ifstream &fin)
+Zhuravleva::Object_oriented * Zhuravleva::Object_oriented_Input(Object_oriented &obj, ifstream &fin)
 {
 	unsigned short int temp;
 	fin >> temp;
@@ -20,7 +20,7 @@ Filippov::Object_oriented * Filippov::Object_oriented_Input(Object_oriented &obj
 	}
 }
 
-void Filippov::Object_oriented_Output(Object_oriented *obj, ofstream &fout)
+void Zhuravleva::Object_oriented_Output(Object_oriented *obj, ofstream &fout)
 {
 	fout << "It is Object-oriented programming language: Inheritance is ";
 	switch (obj->number)

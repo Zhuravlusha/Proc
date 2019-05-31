@@ -1,6 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "Language.h"
+#include <ctime>
 
-Filippov::Language* Filippov::Language_Input(ifstream &fin)
+Zhuravleva::Language* Zhuravleva::Language_Input(ifstream &fin)
 {
 	Language *language = new Language;
 	Procedural *proc;
@@ -8,7 +10,6 @@ Filippov::Language* Filippov::Language_Input(ifstream &fin)
 	unsigned short int temp;
 	fin >> temp;
 	fin >> language->year_of_development;
-	fin >> language->reference;
 	switch (temp)
 	{
 	case 1:
@@ -28,7 +29,7 @@ Filippov::Language* Filippov::Language_Input(ifstream &fin)
 	}
 }
 
-void Filippov::Language_Output(Language *obj, ofstream &fout)
+void Zhuravleva::Language_Output(Language *obj, ofstream &fout)
 {
 	switch (obj->key)
 	{
@@ -42,6 +43,17 @@ void Filippov::Language_Output(Language *obj, ofstream &fout)
 		fout << "Incorrect programming language" << endl;
 		return;
 	}
-	fout << "Year of development = " << obj->year_of_development
-		<< ", The number of references of this language on the Internet = " << obj->reference << endl;
+	fout << "Year of development = " << obj->year_of_development << endl;
+}
+
+bool Zhuravleva::Compare(Language *first, Language *second)
+{
+	return Past_Years(first) < Past_Years(second);
+}
+
+int Zhuravleva::Past_Years(Language *obj)
+{
+	time_t now = time(NULL);
+	tm* localtm = localtime(&now);
+	return 1900 + localtm->tm_year - obj->year_of_development;
 }
