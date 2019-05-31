@@ -9,13 +9,13 @@ namespace Filippov
 	{
 		Language *language;
 		Node *Next;
-		Node *Prev;//óêàçàòåëü íà ïðåäûäóùèé ýëåìåíò â ñïèñêå
+		Node *Prev;
 	};
 
 	struct LinkedList
 	{
-		Node *First;//óêàçàòåëü íà ïåðâûé ýëåìåíò â ñâÿçíîì ñïèñêå
-		Node *Last;//óêàçàòåëü íà ïîñëåäíèé ýëåìåíò â ñâÿçíîì ñïèñêå
+		Node *First;
+		Node *Last;
 		size_t SizeList;
 	};
 

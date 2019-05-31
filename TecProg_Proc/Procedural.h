@@ -12,10 +12,10 @@ namespace Filippov
 		enum lang
 		{
 			PROCEDURAL,
-			OOP
+			OOP,
+			FUNCTIONAL
 		} key;
 		unsigned short int year_of_development;
-		int reference;
 		bool abstract_type;
 	};
 
