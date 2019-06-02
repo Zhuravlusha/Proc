@@ -125,6 +125,7 @@ void Zhuravleva::Swap(LinkedList &obj, Node *first, Node *second)
 		return;
 	}
 	if ((first->Prev != NULL) && (second->Next != NULL))
+	{
 		first->Next = second->Next;
 		second->Prev = first->Prev;
 		second->Next = first;
@@ -132,4 +133,5 @@ void Zhuravleva::Swap(LinkedList &obj, Node *first, Node *second)
 		second->Prev->Next = second;
 		first->Next->Prev = first;
 		return;
+	}
 }
