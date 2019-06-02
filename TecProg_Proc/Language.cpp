@@ -55,15 +55,3 @@ void Zhuravleva::Language_Output(Language *obj, ofstream &fout)
 	}
 	fout << "Year of development = " << obj->year_of_development << endl;
 }
-
-bool Zhuravleva::Compare(Language *first, Language *second)
-{
-	return Past_Years(first) < Past_Years(second);
-}
-
-int Zhuravleva::Past_Years(Language *obj)
-{
-	time_t now = time(NULL);
-	tm* localtm = localtime(&now);
-	return 1900 + localtm->tm_year - obj->year_of_development;
-}
