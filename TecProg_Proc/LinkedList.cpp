@@ -1,156 +1,170 @@
 #include "LinkedList.h"
 
-void Zhuravleva::Init(LinkedList &obj)
+void Zhuravleva::Init(Linked_List &obj)
 {
-	obj.First = NULL;
-	obj.Last = NULL;
-	obj.SizeList = 0;
+	obj.head = NULL;
+	obj.tail = NULL;
+	obj.size_list = 0;
 }
 
-void Zhuravleva::Clear(LinkedList &obj)
+void Zhuravleva::Clear(Linked_List &obj)
 {
-	Node *Temp = NULL;
-	while (obj.Last != NULL)
+	Node *temp = NULL;
+	while (obj.tail != NULL)
 	{
-		Temp = obj.Last->Prev;
-		delete obj.Last;
-		obj.Last = Temp;
-		--obj.SizeList;
+		temp = obj.tail->prev;
+		delete obj.tail;
+		obj.tail = temp;
+		--obj.size_list;
 	}
-	obj.First = Temp;
+	obj.head = temp;
 }
 
-void Zhuravleva::LinkedList_Input(LinkedList &obj, ifstream &fin)
+void Zhuravleva::Linked_List_Input(Linked_List &obj, ifstream &fin)
 {
-	Node *Temp;
+	Node *temp;
 	while (!fin.eof())
 	{
-		Temp = new Node;
+		temp = new Node;
 
-		Temp->Next = NULL;
+		temp->language = Language_Input(fin);
+		temp->next = NULL;
+		++obj.size_list;
 
-		Temp->language = Language_Input(fin);
-
-		++obj.SizeList;
-
-		if (obj.First == NULL)
+		if (obj.head == NULL)
 		{
-			Temp->Prev = NULL;
-			obj.First = obj.Last = Temp;
+			temp->prev = NULL;
+			obj.head = obj.tail = temp;
 		}
 		else
 		{
-			Temp->Prev = obj.Last;
-			obj.Last->Next = Temp;
-			obj.Last = Temp;
+			temp->prev = obj.tail;
+			obj.tail->next = temp;
+			obj.tail = temp;
 		}
 	}
 }
 
-void Zhuravleva::LinkedList_Output(LinkedList &obj, ofstream &fout)
+void Zhuravleva::Linked_List_Output(Linked_List &obj, ofstream &fout)
 {
-	Node *current = obj.First;
-	fout << "Container contains " << obj.SizeList << " elements." << endl;
+	Node *current = obj.head;
+	fout << "Container contains " << obj.size_list << " elements." << endl;
 
-	for (size_t i = 0; i < obj.SizeList; i++)
+	for (size_t i = 0; i < obj.size_list; i++)
 	{
 		fout << i + 1 << ": ";
-		Language_Output(current->language, fout);
-		current = current->Next;
-	}
-	fout << endl;
-}
-
-void Zhuravleva::Only_Procedural(LinkedList &obj, ofstream &fout)
-{
-	Node *current = obj.First;
-	fout << "Only Procedural languages." << endl;
-
-	for (size_t i = 0; i < obj.SizeList; i++)
-	{
-		fout << i + 1 << ": ";
-		if (current->language->key == Language::lang::PROCEDURAL)
+		if (current->language == NULL)
 		{
-			Language_Output(current->language, fout);
+			fout << "Error reading data! Expected other values in the string." << endl;
 		}
 		else
 		{
-			fout << endl;
+			Language_Output(*current->language, fout);
+			fout << "The number of years that have passed since the year the language was created = "
+				<< Past_Years(*current->language) << endl;
 		}
-		current = current->Next;
+		current = current->next;
 	}
 }
 
-
-
-void Zhuravleva::Sort_List(LinkedList &obj)
+void Zhuravleva::Sort_List(Linked_List &obj)
 {
-	if (obj.SizeList < 2)
+	if (obj.size_list < 2)
+	{
 		return;
+	}
 
-	Node *current = obj.First;
-
+	Node *current = obj.head;
 	bool flag = false;
 
 	do
 	{
-		current = obj.First;
+		current = obj.head;
 		flag = false;
-		for (size_t i = 0; i < (obj.SizeList - 1); ++i)
+		for (size_t i = 0; i < (obj.size_list - 1); ++i)
 		{
-			if (Compare(current->language, current->Next->language))
+			if (Compare(current->language, current->next->language))
 			{
-				Swap(obj, current, current->Next);
+				Swap(obj, current, current->next);
 				flag = true;
 			}
 			else
 			{
-				current = current->Next;
+				current = current->next;
 			}
 		}
 	} while (flag);
 }
 
-void Zhuravleva::Swap(LinkedList &obj, Node *first, Node *second)
+void Zhuravleva::Swap(Linked_List &obj, Node *first, Node *second)
 {
-	if ((first->Prev == NULL) && (second->Next == NULL))
+	if ((first->prev == NULL) && (second->next == NULL))
 	{
-		obj.First = second;
-		obj.Last = first;
-		first->Prev = second;
-		second->Next = first;
-		first->Next = NULL;
-		second->Prev = NULL;
+		obj.head = second;
+		obj.tail = first;
+		first->prev = second;
+		second->next = first;
+		first->next = NULL;
+		second->prev = NULL;
 		return;
 	}
-	if ((first->Prev == NULL) && (second->Next != NULL))
+
+	if ((first->prev == NULL) && (second->next != NULL))
 	{
-		first->Next = second->Next;
-		first->Prev = second;
-		second->Next->Prev = first;
-		second->Next = first;
-		second->Prev = NULL;
-		obj.First = second;
+		first->next = second->next;
+		first->prev = second;
+		second->next->prev = first;
+		second->next = first;
+		second->prev = NULL;
+		obj.head = second;
 		return;
 	}
-	if ((first->Prev != NULL) && (second->Next == NULL))
+
+	if ((first->prev != NULL) && (second->next == NULL))
 	{
-		second->Prev = first->Prev;
-		first->Prev = second;
-		first->Next = NULL;
-		second->Next = first;
-		second->Prev->Next = second;
-		obj.Last = first;
+		second->prev = first->prev;
+		first->prev = second;
+		first->next = NULL;
+		second->next = first;
+		second->prev->next = second;
+		obj.tail = first;
 		return;
 	}
-	if ((first->Prev != NULL) && (second->Next != NULL))
+	
+	if ((first->prev != NULL) && (second->next != NULL))
 	{
-		first->Next = second->Next;
-		second->Prev = first->Prev;
-		second->Next = first;
-		first->Prev = second;
-		second->Prev->Next = second;
-		first->Next->Prev = first;
+		first->next = second->next;
+		second->prev = first->prev;
+		second->next = first;
+		first->prev = second;
+		second->prev->next = second;
+		first->next->prev = first;
 		return;
 	}
+}
+
+void Zhuravleva::Only_Procedural(Linked_List &obj, ofstream &fout)
+{
+	Node *current = obj.head;
+	fout << endl << "Only Procedural languages." << endl;
+
+	for (size_t i = 0; i < obj.size_list; i++)
+	{
+		fout << i + 1 << ": ";
+		if (current->language == NULL)
+		{
+			fout << endl;
+			continue;
+		}
+		if (current->language->key == Language::lang::PROCEDURAL)
+		{
+			Language_Output(*current->language, fout);
+		}
+		else
+		{
+			fout << endl;
+		}
+		current = current->next;
+	}
+	fout << endl;
 }

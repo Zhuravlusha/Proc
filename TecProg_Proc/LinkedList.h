@@ -8,27 +8,24 @@ namespace Zhuravleva
 	struct Node
 	{
 		Language *language;
-		Node *Next;
-		Node *Prev;
+		Node *next;
+		Node *prev;
 	};
 
-	struct LinkedList
+	struct Linked_List
 	{
-		Node *First;
-		Node *Last;
-		size_t SizeList;
+		Node *head;
+		Node *tail;
+		size_t size_list;
 	};
 
-	void Init(LinkedList &obj);
-	void Clear(LinkedList &obj);
-
-	void LinkedList_Input(LinkedList &obj, ifstream &fin);
-	void LinkedList_Output(LinkedList &obj, ofstream &fout);
-
-	void Sort_List(LinkedList &obj);
-	void Swap(LinkedList &obj, Node *first, Node *second);
-
-	void Only_Procedural(LinkedList &obj, ofstream &fout);
+	void Init(Linked_List &obj);
+	void Clear(Linked_List &obj);
+	void Linked_List_Input(Linked_List &obj, ifstream &fin);
+	void Linked_List_Output(Linked_List &obj, ofstream &fout);
+	void Sort_List(Linked_List &obj);
+	void Swap(Linked_List &obj, Node *first, Node *second);
+	void Only_Procedural(Linked_List &obj, ofstream &fout);
 }
 
-#endif // !LINKEDLIST_H
+#endif

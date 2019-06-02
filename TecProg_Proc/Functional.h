@@ -15,7 +15,8 @@ namespace Zhuravleva
 			OOP,
 			FUNCTIONAL
 		} key;
-		unsigned short int year_of_development;
+		unsigned int year_of_development;
+		unsigned long long int reference;
 		bool lazy_calculations;
 		enum typification
 		{
@@ -24,8 +25,8 @@ namespace Zhuravleva
 		} type;
 	};
 
-	Functional* Functional_Input(Functional &obj, ifstream &fin);
-	void Functional_Output(Functional *obj, ofstream &fout);
+	bool Functional_Input(Functional &obj, ifstream &fin);
+	void Functional_Output(Functional &obj, ofstream &fout);
 }
 
-#endif // !FUNCTIONAL_H#pragma once
+#endif

@@ -15,13 +15,14 @@ namespace Zhuravleva
 			OOP,
 			FUNCTIONAL
 		} key;
-		unsigned short int year_of_development;
+		unsigned int year_of_development;
+		unsigned long long int reference;
 	};
 
-	Language* Language_Input(ifstream &fin);
-	void Language_Output(Language *obj, ofstream &fout);
-	int Past_Years(Language *obj);
+	Language *Language_Input(ifstream &fin);
+	void Language_Output(Language &obj, ofstream &fout);
+	int Past_Years(Language &obj);
 	bool Compare(Language *first, Language *second);
 }
 
-#endif // !LANGUAGE_H
+#endif
