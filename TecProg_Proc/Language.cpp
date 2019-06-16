@@ -139,20 +139,5 @@ int Zhuravleva::Past_Years(Language &obj)
 
 bool Zhuravleva::Compare(Language *first, Language *second)
 {
-	if (first == NULL && second != NULL)
-	{
-		return true;
-	}
-	if (first != NULL && second == NULL)
-	{
-		return false;
-	}
-	if (first == NULL && second == NULL)
-	{
-		return false;
-	}
-	if (first != NULL && second != NULL)
-	{
-		return Past_Years(*first) < Past_Years(*second);
-	}
+	return Past_Years(*first) < Past_Years(*second);
 }
